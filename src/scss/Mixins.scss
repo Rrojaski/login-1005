@@ -1,0 +1,122 @@
+@import "./Variables.scss";
+
+
+// Media query funtion
+@mixin respond($breakpoint) {
+  @if $breakpoint == phone {
+    @media (max-width: 37.5em) {
+      @content;
+    }
+  }
+  @if $breakpoint == tab-port {
+    @media (max-width: 56.25em) {
+      @content;
+    }
+  }
+  @if $breakpoint == tab-land {
+    @media (max-width: 75em) {
+      @content;
+    }
+  }
+  @if $breakpoint == desk-big {
+    @media (min-width: 112.5em) {
+      @content;
+    }
+  }
+}
+
+// Mixin Animations
+
+@mixin flicker($color1, $color2) {
+  animation-name: flicker;
+  animation-iteration-count: infinite;
+  animation-duration: 0.5s;
+  animation-direction: alternate;
+
+  @keyframes flicker {
+    0% {
+      color: $color1;
+    }
+    100% {
+      color: $color2;
+    }
+  }
+}
+
+@mixin fade($direction) {
+  animation-iteration-count: 1;
+  animation-duration: 0.5s;
+  animation-direction: alternate;
+  animation-fill-mode: forwards;
+  @if ($direction == fade) {
+    animation-name: fade;
+    @keyframes fade {
+      0% {
+        display: block;
+      }
+      90% {
+        display: block;
+      }
+      100% {
+        display: none;
+      }
+    }
+  }
+  @if ($direction == show) {
+    animation-name: show;
+    @keyframes show {
+      0% {
+        display: none;
+      }
+      100% {
+        display: block;
+      }
+    }
+  }
+}
+
+// Sass Mixin
+
+@mixin reset-list {
+  list-style-type: none;
+}
+
+@mixin absolute-center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+@mixin absolute-top {
+  position: absolute;
+  top: 25%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+@mixin absolute-bottom {
+  position: absolute;
+  top: 75%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+@mixin clear-fix {
+  &::after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+}
+
+@mixin reset-anchor {
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
+  &:visited,
+  &:link {
+    text-decoration: none;
+    color: inherit;
+  }
+}
